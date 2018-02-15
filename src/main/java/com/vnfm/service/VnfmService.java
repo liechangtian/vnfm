@@ -46,6 +46,17 @@ public class VnfmService {
         return vnfmDao.storeVnf(vnf);
     }
 
+    // VNF缩容
+    public boolean scalein(final String vnfId, final String resourceId) {
+        Vnf vnf = vnfmDao.findVnfById(vnfId);
+        if (vnf != null) {
+            vnf.deleteResource(resourceId);
+            vnfmDao.storeVnf(vnf);
+            return true;
+        }
+        return false;
+    }
+
     // 删除VNFM，测试时始终返回true，实际内容应是删除自身的逻辑
     public boolean deleteVnfm() {
         return true;

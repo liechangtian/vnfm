@@ -104,8 +104,8 @@ public class VnfmResource {
     @POST
     @Path("vnfs/instantiate")
     @Produces(MediaType.TEXT_PLAIN)
-    public String instantiateVnf(@QueryParam("packageId") final String packageId) {
-        Vnf vnf = new Vnf(packageId);
+    public String instantiateVnf(@FormParam("packageId") final String packageId) {
+        Vnf vnf = new Vnf("787",packageId);
         vnfmService.saveVnf(vnf);
         return vnf.getId();
     }
@@ -113,7 +113,7 @@ public class VnfmResource {
     @POST
     @Path("vnfs/add")
     @Produces(MediaType.APPLICATION_JSON)
-    public Vnf addVnf(@QueryParam("vnfId") final String vnfId, @QueryParam("vnfUrl") final String vnfUrl) {
+    public Vnf addVnf(@FormParam("vnfId") final String vnfId, @FormParam("vnfUrl") final String vnfUrl) {
         Vnf vnf = vnfmService.getVnf(vnfId);
         vnf.setVnfUrl(vnfUrl);
         return vnfmService.saveVnf(vnf);
@@ -122,17 +122,18 @@ public class VnfmResource {
     @POST
     @Path("vnfs/scaleout")
     @Produces(MediaType.APPLICATION_JSON)
-    public Vnf scaleout(@QueryParam("vnfId") final String vnfId, @QueryParam("resourceId") final String resourceId,@QueryParam("memory") final String memory, @QueryParam("storage") final String storage) {
-        final Vnf vnf = vnfmService.scaleout(vnfId, resourceId,memory, storage);
-        return vnf;
+    public Vnf scaleout(@FormParam("vnfId") final String vnfId, @FormParam("resourceId") final String resourceId, @FormParam("memory") final String memory, @QueryParam("storage") final String storage) {
+        return vnfmService.scaleout(vnfId, resourceId, memory, storage);
     }
 
     @POST
     @Path("vnfs/scalein")
-    @Produces(MediaType.APPLICATION_JSON)
-    public Vnf scalein(@QueryParam("vnfId") final String vnfId, @QueryParam("storage") final String storage) {
-        Vnf vnf = vnfmService.scaleout(vnfId);
-        return vnf;
+    @Produces(MediaType.TEXT_PLAIN)
+    public String scalein(@FormParam("vnfId") final String vnfId, @FormParam("resourceId") final String resourceId) {
+        if (vnfmService.scalein(vnfId, resourceId))
+            return "Successed!";
+        else
+            return "Failed!";
     }
 
 

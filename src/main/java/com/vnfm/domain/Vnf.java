@@ -30,9 +30,9 @@ public class Vnf {
         this.packageId = packageId;
     }
 
-    public Vnf(String packageId, String vnfUrl) {
+    public Vnf(String id, String packageId) {
+        this.id = id;
         this.packageId = packageId;
-        this.vnfUrl = vnfUrl;
     }
 
     public Vnf(String id, String packageId, String vnfUrl) {
