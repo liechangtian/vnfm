@@ -4,6 +4,9 @@
     <persistence-unit name="domain" transaction-type="RESOURCE_LOCAL">
         <!-- provider -->
         <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+        <class>com.vnfm.domain.Image</class>
+        <class>com.vnfm.domain.Package</class>
+        <class>com.vnfm.domain.Resource</class>
         <class>com.vnfm.domain.Vnf</class>
         <!-- Connection JDBC -->
         <properties>

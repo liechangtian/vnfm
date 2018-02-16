@@ -13,5 +13,201 @@
     <schema id="7" parent="1" name="simple_service_book"/>
     <schema id="8" parent="1" name="sys"/>
     <schema id="9" parent="1" name="test"/>
+    <schema id="10" parent="1" name="vim"/>
+    <table id="11" parent="2" name="image"/>
+    <table id="12" parent="2" name="package"/>
+    <table id="13" parent="2" name="package_image"/>
+    <table id="14" parent="2" name="package_resource"/>
+    <table id="15" parent="2" name="resource"/>
+    <table id="16" parent="2" name="sequence"/>
+    <table id="17" parent="2" name="vnf"/>
+    <table id="18" parent="2" name="vnf_resource"/>
+    <column id="19" parent="11" name="ID">
+      <Position>1</Position>
+      <DataType>varchar(255)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="20" parent="11" name="NAME">
+      <Position>2</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <column id="21" parent="11" name="POSITION">
+      <Position>3</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <key id="22" parent="11" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>ID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="23" parent="12" name="ID">
+      <Position>1</Position>
+      <DataType>varchar(255)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="24" parent="12" name="NAME">
+      <Position>2</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <column id="25" parent="12" name="POSITION">
+      <Position>3</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <column id="26" parent="12" name="SUPPLIER">
+      <Position>4</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <column id="27" parent="12" name="VERSION">
+      <Position>5</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <key id="28" parent="12" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>ID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="29" parent="13" name="Package_ID">
+      <Position>1</Position>
+      <DataType>varchar(255)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="30" parent="13" name="images_ID">
+      <Position>2</Position>
+      <DataType>varchar(255)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="31" parent="13" name="FK_package_image_images_ID">
+      <ColNames>images_ID</ColNames>
+    </index>
+    <key id="32" parent="13" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>Package_ID
+images_ID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="33" parent="13" name="FK_package_image_Package_ID">
+      <ColNames>Package_ID</ColNames>
+      <RefSchemaName>vnfm</RefSchemaName>
+      <RefTableName>package</RefTableName>
+      <RefColNames>ID</RefColNames>
+    </foreign-key>
+    <foreign-key id="34" parent="13" name="FK_package_image_images_ID">
+      <ColNames>images_ID</ColNames>
+      <RefSchemaName>vnfm</RefSchemaName>
+      <RefTableName>image</RefTableName>
+      <RefColNames>ID</RefColNames>
+    </foreign-key>
+    <column id="35" parent="14" name="Package_ID">
+      <Position>1</Position>
+      <DataType>varchar(255)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="36" parent="14" name="resources_ID">
+      <Position>2</Position>
+      <DataType>varchar(255)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="37" parent="14" name="FK_package_resource_resources_ID">
+      <ColNames>resources_ID</ColNames>
+    </index>
+    <key id="38" parent="14" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>Package_ID
+resources_ID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="39" parent="14" name="FK_package_resource_Package_ID">
+      <ColNames>Package_ID</ColNames>
+      <RefSchemaName>vnfm</RefSchemaName>
+      <RefTableName>package</RefTableName>
+      <RefColNames>ID</RefColNames>
+    </foreign-key>
+    <foreign-key id="40" parent="14" name="FK_package_resource_resources_ID">
+      <ColNames>resources_ID</ColNames>
+      <RefSchemaName>vnfm</RefSchemaName>
+      <RefTableName>resource</RefTableName>
+      <RefColNames>ID</RefColNames>
+    </foreign-key>
+    <column id="41" parent="15" name="ID">
+      <Position>1</Position>
+      <DataType>varchar(255)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="42" parent="15" name="MEMORY">
+      <Position>2</Position>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <column id="43" parent="15" name="STORAGE">
+      <Position>3</Position>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <key id="44" parent="15" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>ID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="45" parent="16" name="SEQ_NAME">
+      <Position>1</Position>
+      <DataType>varchar(50)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="46" parent="16" name="SEQ_COUNT">
+      <Position>2</Position>
+      <DataType>decimal(38)|0</DataType>
+    </column>
+    <key id="47" parent="16" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>SEQ_NAME</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="48" parent="17" name="ID">
+      <Position>1</Position>
+      <DataType>varchar(255)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="49" parent="17" name="PACKAGEID">
+      <Position>2</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <column id="50" parent="17" name="VNFURL">
+      <Position>3</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <key id="51" parent="17" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>ID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="52" parent="18" name="Vnf_ID">
+      <Position>1</Position>
+      <DataType>varchar(255)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="53" parent="18" name="resources_ID">
+      <Position>2</Position>
+      <DataType>varchar(255)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="54" parent="18" name="FK_vnf_resource_resources_ID">
+      <ColNames>resources_ID</ColNames>
+    </index>
+    <key id="55" parent="18" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>Vnf_ID
+resources_ID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="56" parent="18" name="FK_vnf_resource_Vnf_ID">
+      <ColNames>Vnf_ID</ColNames>
+      <RefSchemaName>vnfm</RefSchemaName>
+      <RefTableName>vnf</RefTableName>
+      <RefColNames>ID</RefColNames>
+    </foreign-key>
+    <foreign-key id="57" parent="18" name="FK_vnf_resource_resources_ID">
+      <ColNames>resources_ID</ColNames>
+      <RefSchemaName>vnfm</RefSchemaName>
+      <RefTableName>resource</RefTableName>
+      <RefColNames>ID</RefColNames>
+    </foreign-key>
   </database-model>
 </dataSource>

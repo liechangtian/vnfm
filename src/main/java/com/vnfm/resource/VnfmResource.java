@@ -105,9 +105,8 @@ public class VnfmResource {
     @Path("vnfs/instantiate")
     @Produces(MediaType.TEXT_PLAIN)
     public String instantiateVnf(@FormParam("packageId") final String packageId) {
-        Vnf vnf = new Vnf("787",packageId);
-        vnfmService.saveVnf(vnf);
-        return vnf.getId();
+        Vnf vnf = new Vnf(packageId);
+        return vnfmService.saveVnf(vnf).getId();
     }
 
     @POST
@@ -122,7 +121,7 @@ public class VnfmResource {
     @POST
     @Path("vnfs/scaleout")
     @Produces(MediaType.APPLICATION_JSON)
-    public Vnf scaleout(@FormParam("vnfId") final String vnfId, @FormParam("resourceId") final String resourceId, @FormParam("memory") final String memory, @QueryParam("storage") final String storage) {
+    public Vnf scaleout(@FormParam("vnfId") final String vnfId, @FormParam("resourceId") final String resourceId, @FormParam("memory") final String memory, @FormParam("storage") final String storage) {
         return vnfmService.scaleout(vnfId, resourceId, memory, storage);
     }
 
